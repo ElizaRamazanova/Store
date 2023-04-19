@@ -1,0 +1,19 @@
+@media only screen and (max-width: 428px) {
+    .output {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    
+    .wrap img {
+      height: 200px;
+    }
+    
+    #form {
+      grid-template-columns: 1fr;
+      max-width: 80%;
+    }
+    
+    .search-button {
+      margin: 10px auto;
+    }
+  }
+  

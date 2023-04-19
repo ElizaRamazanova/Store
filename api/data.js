@@ -1,0 +1,57 @@
+const dataAlt = [
+
+    {
+        name: 'super burger',
+        img: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/black_and_blue_burger_95881_16x9.jpg',
+        price: 100,
+        category: 'burgers'
+    },
+    {
+        name: 'pro burger',
+        img: 'https://images.immediate.co.uk/production/volatile/sites/30/2013/05/Cheeseburger-3d7c922.jpg',
+        price: 150,
+        category: 'burgers'
+    },
+    {
+        name: 'extra burger',
+        img: 'https://mcdonalds.com.au/sites/mcdonalds.com.au/files/MCD_Category_Burgers_375x268.png',
+        price: 180,
+        category: 'burgers'
+    },
+    {
+        name: 'italian pizza',
+        img: 'https://media-cdn.tripadvisor.com/media/photo-s/1a/7b/99/6f/pizzas-de-ate-40cm-com.jpg',
+        price: 300,
+        category: 'pizzas'
+    },
+    {
+        name: 'meat pizza',
+        img: 'https://media-cdn.tripadvisor.com/media/photo-s/1d/74/13/63/pizzas-garage-medellin.jpg',
+        price: 400,
+        category: 'pizzas'
+    },
+    {
+        name: 'mozarella pizza',
+        img: 'https://content-images.weber.com/content/Pizza-italienne.png?auto=compress,format&w=750',
+        price: 500,
+        category: 'pizzas'
+    },
+    {
+        name: 'vino',
+        img: 'https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/wp-cms/uploads/2022/02/02-90718295-flask-like-plastic-bottles-are-coming.jpg',
+        price: 1000,
+        category: 'drinks'
+    },
+    {
+        name: 'vodka',
+        img: 'https://ginfling.nl/pub/media/catalog/product/cache/8981f8e3f39dfdcfb5ae82d173e66caa/a/b/absolut-vodka-1l_c5wetvuvgkgqdklv.jpg',
+        price: 2000,
+        category: 'drinks'
+    },
+    {
+        name: 'tequila',
+        img: 'https://cdn.webshopapp.com/shops/308882/files/401171508/650x750x2/tequila-sierra-zilver.jpg',
+        price: 3000,
+        category: 'drinks'
+    },
+]
