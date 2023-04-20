@@ -6,7 +6,7 @@ let number = 6
 let category = 'all' // Define the initial category
 
 const getFoods = async (category) => {
-    let url = `http://localhost:3004/food?_limit=${number}`
+    let url = `https://data-base-tau.vercel.app/food?_limit=${number}`
     if (category && category !== 'all') {
         url += `&category=${category}`
     }
