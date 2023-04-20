@@ -1,53 +1,52 @@
 const output = document.querySelector('.output')
+const viewAllButton = document.querySelector('.vewAll')
+
 let data
-const getFoods = async () => {
-    const response = await fetch('http://localhost:3004/food')
+let number = 6
+let category = 'all' // Define the initial category
+
+const getFoods = async (category) => {
+    let url = `https://data-base-tau.vercel.app/food?_limit=${number}`
+    if (category && category !== 'all') {
+        url += `&category=${category}`
+    }
+    const response = await fetch(url)
     data = await response.json()
     categoriesRender(data)
 }
 
+getFoods(category)
+
+const categoriesRender = (data) => {
+    let foodItems = data.map((el) => {
+        const itemHtml = `
+      <div class="wrap">
+        <img src="${el.img}" alt="">
+        <h2>${el.name}</h2>
+        <button class="showContent">show content</button>
+        <div class="details" style="display:none">
+          <h2>${el.price}</h2>
+        </div>
+      </div>
+    `;
+        return itemHtml;
+    });
+
+    output.innerHTML = foodItems.join('');
 
 
-const categoriesRender = (data, showDrinks) => {
-    output.innerHTML = '';
-
-    data.forEach((el) => {
-        if (!showDrinks && el.category === 'drinks') {
-            return; // skip 'drinks' category if it is not selected
-        }
-
-        const image = document.createElement('img');
-        const title = document.createElement('h2');
-        const price = document.createElement('h2');
-        const category = document.createElement('h2');
-        const button = document.createElement('button');
-
-        const wrap = document.createElement('div');
-        const details = document.createElement('div');
-
-        image.src = el.img;
-        title.textContent = el.name;
-        category.textContent = el.category;
-        price.textContent = el.price;
-        button.textContent = 'show content';
-
-        wrap.className = 'wrap';
-        details.className = 'details';
-        details.style.display = 'none'; // hide by default
-
+    const showContentButtons = document.querySelectorAll('.showContent');
+    showContentButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            details.style.display = details.style.display === 'none' ? 'block' : 'none';
-            button.textContent = details.style.display === 'none' ? 'show content' : 'hide content';
+            const details = button.nextElementSibling;
+            if (details.style.display === 'none') {
+                details.style.display = 'block';
+            } else {
+                details.style.display = 'none';
+            }
         });
-
-        details.append(price);
-        wrap.append(image, title, button, details);
-        output.append(wrap);
     });
 };
-
-
-
 
 const renderButtons = () => {
     const categoryItems = ['all', 'burgers', 'pizzas', 'drinks'];
@@ -59,27 +58,27 @@ const renderButtons = () => {
         button.textContent = el;
 
         button.addEventListener('click', () => {
+            category = el;
             if (el === 'all') {
-                categoriesRender(data, true);
+                getFoods('all');
             } else if (el === 'drinks') {
-                const result = data.filter(item => {
-                    return item.category === 'drinks';
-                });
-                categoriesRender(result, true);
+                getFoods('drinks');
             } else {
-                const result = data.filter(item => {
-                    return item.category === el;
-                });
-                categoriesRender(result, false);
+                getFoods(el);
             }
         });
 
+
         buttonWrap.append(button);
+    });
+
+    viewAllButton.addEventListener('click', () => {
+        viewAllButtons(category);
+        viewAllButton.style.display = 'none';
     });
 };
 
-renderButtons()
-
+renderButtons();
 
 const searchItems = () => {
     const input = document.querySelector('#search')
@@ -103,25 +102,9 @@ const searchItems = () => {
 
 }
 searchItems()
-const viewAllButtons = () => {
-    const viewAllButton = document.createElement('button');
-    viewAllButton.className = 'vewAll'
-    viewAllButton.textContent = 'View All';
-    viewAllButton.addEventListener('click', () => {
-        categoriesRender(data, true);
-    });
-    output.after(viewAllButton);
+
+const viewAllButtons = (category) => {
+    number = 15
+    getFoods(category)
+
 }
-getFoods()
-viewAllButtons()
-
-
-// console.log(btns);
-
-
-
-
-
-
-
-// console.log(result);
